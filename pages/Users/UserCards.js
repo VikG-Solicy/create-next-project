@@ -19,7 +19,7 @@ const UserCards = () => {
     
     return (
         <Box>
-            <Button variant="contained" onClick={getUsers}>get users</Button>
+            {!cards && (<Button variant="contained" onClick={getUsers}>get users</Button>)}
             <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                 {cards && cards.map(c =>
                     <Card key={c.id} sx={{ m: 3, p: 2, width: 200, border: '2px solid #1976d2', textAlign: 'center' }}>

@@ -9,7 +9,7 @@ const Details = () => {
     
     useEffect(() => {
         if (id) getUsers();
-    }, []);
+    }, [id]);
     
     const getUsers = async () => {
         const userData = await axios(`https://jsonplaceholder.typicode.com/users/${id}`);
@@ -17,7 +17,7 @@ const Details = () => {
     };
     
     return user && (
-        <Card sx={{ border: '1px solid #1976d2', color: '#1976d2', m: 2, p: 2, width: 300, textAlign: 'center' }}>
+        <Card sx={{ border: '1px solid #1976d2',backgroundColor: '#f1f7fd', color: '#1976d2', m: 2, p: 2, width: 300, textAlign: 'center' }}>
             <Typography variant="h5" m="15px" fontWeight="bold">About {user.name}</Typography>
             <Typography>username &gt; {user?.username}</Typography>
             <Typography>email &gt; {user?.email}</Typography>
