@@ -7,14 +7,14 @@ const UserCards = () => {
     const [cards, setCards] = useState();
     
     useEffect(() => {
-        const store = localStorage.getItem('users');
+        const store = sessionStorage.getItem('users');
         if (store) setCards(JSON.parse(store));
     }, []);
     
     const getUsers = async () => {
         const users = await axios('https://jsonplaceholder.typicode.com/users');
         setCards(users.data);
-        localStorage.setItem('users', JSON.stringify(users.data));
+        sessionStorage.setItem('users', JSON.stringify(users.data));
     };
     
     return (
