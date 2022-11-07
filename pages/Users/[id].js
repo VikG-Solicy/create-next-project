@@ -9,7 +9,7 @@ const Details = () => {
     
     useEffect(() => {
         if (id) getUsers();
-    }, [id]);
+    }, []);
     
     const getUsers = async () => {
         const userData = await axios(`https://jsonplaceholder.typicode.com/users/${id}`);
