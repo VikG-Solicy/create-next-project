@@ -1,14 +1,15 @@
 ﻿import { useEffect, useState } from 'react';
 import Link from "next/link";
-import { Box, Button, Card } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import axios from "axios";
 
 const UserCards = () => {
-    const [cards, setCards] = useState();
+    const [cards, setCards] = useState(null);
     
     useEffect(() => {
-        const store = sessionStorage.getItem('users');
-        if (store) setCards(JSON.parse(store));
+        const users = sessionStorage.getItem('users');
+        if (users) setCards(JSON.parse(users));
+        else setCards(undefined);
     }, []);
     
     const getUsers = async () => {
@@ -18,16 +19,15 @@ const UserCards = () => {
     };
     
     return (
-        <Box>
-            {!cards && (<Button variant="contained" onClick={getUsers}>get users</Button>)}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                {cards && cards.map(c =>
-                    <Card key={c.id} sx={{ m: 3, p: 2, width: 200, border: '2px solid #1976d2', textAlign: 'center' }}>
-                        <Link href={`/Users/${c.id}`}>{c.name}</Link>
-                    </Card>,
+        <Grid container justifyContent="center">
+            {cards === null ? null : !cards
+                ? <Button variant="contained" onClick={getUsers}>get users</Button>
+                : cards.map(c =>
+                    <Grid item key={c.id} sx={{ m: 3, p: 2, width: 200, border: '2px solid #1976d2', textAlign: 'center' }}>
+                        <Link style={{ textDecoration: 'none', color: " #1976d2" }} href={`/Users/${c.id}`}>{c.name}</Link>
+                    </Grid>,
                 )}
-            </Box>
-        </Box>
+        </Grid>
     );
 };
 
