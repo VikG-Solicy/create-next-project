@@ -17,7 +17,7 @@ const UserCards = () => {
             <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                 {cards && cards.map(c =>
                     <Card key={c.id} sx={{ m: 3, p: 2, width: 200, border: '2px solid #1976d2', textAlign: 'center' }}>
-                        <Link href={`/${c.id}`}>{c.name}</Link>
+                        <Link href={`/Users/UserCards/${c.id}`}>{c.name}</Link>
                     </Card>,
                 )}
             </Box>
